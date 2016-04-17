@@ -3,6 +3,11 @@ all: msr
 msr: MSR605.cpp msr605.o libmsr605.so
 	gcc -Wall -L. -lstdc++ -lmsr605 MSR605.cpp -o msr605
 
+cp: MSR605.cpp msr605.o libmsr605.so
+	gcc -Wall -L. -lstdc++ -lmsr605 MSR605.cpp -o msr605
+	rm /lib/libmsr605.so
+	cp ./libmsr605.so /lib/libmsr605.so
+
 msr605.o: MSR605.cpp libmsr605.so
 	cc -Wall -L. -lstdc++ -lmsr605 MSR605.cpp -o msr605.o
 

@@ -1,6 +1,6 @@
 /*
  *  MSR605.cpp
- * 
+ *
  *  MSR605 Application, for operating a MSR605 magstripe reader/writer.
  *  Copyright (C) 2013 Pentura
  *
@@ -33,7 +33,7 @@ static const char* VERSION="0.1";
 MSR605 *msr = new MSR605();
 
 void sigproc(int x)
-{ 		
+{
 		printf("Quitting...");
 		msr->disconnect();
 		delete(msr);
@@ -61,7 +61,7 @@ void license(){
 }
 
 int main (int argc, const char * const argv[]) {
-  
+
 	if ( argc != 5 ){
 	      license();
 	      printf( "\tusage: %s <track1 bit> <track2 bit> <track3 bit> <mode>\n", argv[0] );
@@ -74,36 +74,37 @@ int main (int argc, const char * const argv[]) {
 	  int mode = atoi(argv[4]);
 	  if (t1 < 5|| t1 > 8 || t1 == 6) {
 	    printf("ERROR: Track 1 bits must be either 5,7 or 8\n");
-	  
+
 	  }
 	  if (t2 < 5 || t2 > 8|| t2== 6) {
 	    printf("ERROR: Track 2 bits must be either 5,7 or 8\n");
-	  
+
 	  }
 	  if (t3 < 5 || t3 > 8|| t3 == 6) {
-	    printf("ERROR: Track 3 bits must be either 5,7 or 8\n"); 
+	    printf("ERROR: Track 3 bits must be either 5,7 or 8\n");
 	  }
-  
+
 	license();
-	signal(SIGINT, sigproc);	
-	try 
+	signal(SIGINT, sigproc);
+	try
 	{
 		/* connect to specified device */
 		magnetic_stripe_t *data = NULL;
 		msr->connect(DEVICE);
-		printf("Connected to %s\n", DEVICE);
+		printf("Connectedd to %s\n", DEVICE);
 		msr->sendReset();
+		printf("Reset sent\n", DEVICE);
 		msr->getFirmware();
 		msr->getModel();
 		msr->sendReset();
-                
+
 		/* initialize the msr */
 		msr->init();
 		printf("Initialized MSR605.\n");
 
 		/* read card */
 		while(1) {
-		  
+
 		  msr->setAllLEDOff();
 		  printf("Waiting for swipe...\n");
 		  switch(mode){
@@ -122,7 +123,7 @@ int main (int argc, const char * const argv[]) {
 		  }
 		  msr->free_ms_data(data);
 		}
-				
+
 		/* close connection */
 		msr->disconnect();
 
@@ -131,12 +132,12 @@ int main (int argc, const char * const argv[]) {
 	{
 		printf("MSR605 Error: %s\n", msg);
 	}
-	
-	
+
+
 	delete(msr);
-    
+
 	return 0;
 
-	  
+
 	}
 }
