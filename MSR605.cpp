@@ -91,11 +91,10 @@ int main (int argc, const char * const argv[]) {
 		/* connect to specified device */
 		magnetic_stripe_t *data = NULL;
 		msr->connect(DEVICE);
-		printf("Connectedd to %s\n", DEVICE);
+		printf("Connected to %s\n", DEVICE);
 		msr->sendReset();
-		printf("Reset sent\n", DEVICE);
-		msr->getFirmware();
 		msr->getModel();
+		msr->getFirmware();
 		msr->sendReset();
 
 		/* initialize the msr */

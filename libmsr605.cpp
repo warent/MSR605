@@ -34,7 +34,7 @@
 #include <iostream>
 #include <signal.h>
 
-//#define DEBUG
+#define DEBUG
 
 using namespace std;
 
@@ -577,7 +577,6 @@ void MSR605::setAllLEDOff()
 void MSR605::sendReset()
 {
 	if(!isConnected()) throw "Unable to send reset: not connected";
-	printf("Reset byte...\n");
 	write_bytes(MSR_RESET, 2);
 }
 /*-------------------------------------------------------------------------------------*/
@@ -624,7 +623,7 @@ void MSR605::getModel()
 void MSR605::getFirmware()
 {
 	char *firmware= (char *)malloc(sizeof(char *) * 9);
-	write_bytes("\x1b\x76", 2);
+	write_bytes("\x0b\x76", 2);
 	read_bytes((unsigned char*)firmware, 9);
 	firmware[9]='\0';
 	memmove (firmware, firmware+1, strlen (firmware));
