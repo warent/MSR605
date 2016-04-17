@@ -7,8 +7,8 @@ Example
 =======
 <pre>
 $ ./msr605 8 8 8 1
-MSR605  Copyright (C) 2013 Pentura 
-This program comes with ABSOLUTELY NO WARRANTY; 
+MSR605  Copyright (C) 2013 Pentura
+This program comes with ABSOLUTELY NO WARRANTY;
 This is free software, and you are welcome to redistribute it under certain conditions;
 
 Connected to /dev/ttyUSB0
@@ -18,10 +18,14 @@ Comm Test Sent...
 Receiving Response.
 Initialized MSR605.
 Waiting for swipe...
-Track 1: 
+Track 1:
 Track 2: 1042c16f1de7f000
-Track 3: 
+Track 3:
 </pre>
+
+Manual
+======
+The programmer's manual was saved from [triades.net](https://www.triades.net/downloads/MSR605%20Programmer's%20Manual.pdf) on April 17, 2016.
 
 License
 =======
